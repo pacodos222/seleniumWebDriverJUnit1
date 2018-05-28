@@ -28,6 +28,7 @@ public class ChangePasswordCorrecto {
   @Test
   public void testChangePasswordCorrecto() throws Exception {
     driver.get("https://logappf1hmis2018.azurewebsites.net/");
+
     driver.findElement(By.xpath("//a[contains(@href, '/Account/Login')]")).click();
     driver.findElement(By.id("Email")).clear();
     driver.findElement(By.id("Email")).sendKeys("mgl958@inlumine.ual.es");
@@ -39,6 +40,7 @@ public class ChangePasswordCorrecto {
     driver.findElement(By.id("OldPassword")).click();
     driver.findElement(By.id("OldPassword")).clear();
     driver.findElement(By.id("OldPassword")).sendKeys("123456Aa.");
+
     driver.findElement(By.id("NewPassword")).click();
     driver.findElement(By.id("NewPassword")).clear();
     driver.findElement(By.id("NewPassword")).sendKeys("Hmis-19");
@@ -47,6 +49,7 @@ public class ChangePasswordCorrecto {
     driver.findElement(By.id("ConfirmPassword")).sendKeys("Hmis-19");
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
     assertTrue(isElementPresent(By.xpath("//div/div[2]/div")));
+
     driver.findElement(By.id("OldPassword")).click();
     driver.findElement(By.id("OldPassword")).clear();
     driver.findElement(By.id("OldPassword")).sendKeys("Hmis-19");
@@ -56,6 +59,8 @@ public class ChangePasswordCorrecto {
     driver.findElement(By.id("ConfirmPassword")).click();
     driver.findElement(By.id("ConfirmPassword")).clear();
     driver.findElement(By.id("ConfirmPassword")).sendKeys("123456Aa.");
+
+
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
     driver.findElement(By.xpath("//button[@type='submit']")).click();
   }
