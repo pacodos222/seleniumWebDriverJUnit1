@@ -1,6 +1,5 @@
 package seleniumWebDriver;
 
-
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -9,10 +8,9 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class RegistroKoYaExiste {
+public class EditarPerfilEmailVacio {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -22,32 +20,21 @@ public class RegistroKoYaExiste {
   public void setUp() throws Exception {
 	  System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
 		driver = new ChromeDriver();
-	// Descargar Firefox driver (Gecko Driver) de https://github.com/mozilla/geckodriver/releases y copiar en carpeta drivers
-    System.setProperty("webdriver.gecko.driver", "drivers/geckodriver-v0.20.1-win64/geckodriver.exe");
-
-	// Descargar Chrome driver de https://sites.google.com/a/chromium.org/chromedriver/downloads y copiar en carpeta drivers
-	System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
-
-    // driver = new FirefoxDriver();
-	// driver = new ChromeDriver();
-	driver = new HtmlUnitDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
-  public void testRegistroKoYaExiste() throws Exception {
-    driver.get("https://logappf1hmis2018.azurewebsites.net/");
-    driver.findElement(By.linkText("Register")).click();
+  public void testEditarPerfilEmailVacio() throws Exception {
+    driver.findElement(By.xpath("//button[@type='button']")).click();
+    driver.findElement(By.linkText("Hello ual707488@ual.es!")).click();
+    driver.findElement(By.id("Email")).click();
+    driver.findElement(By.id("Email")).click();
+    driver.findElement(By.id("Email")).click();
     driver.findElement(By.id("Email")).clear();
-    driver.findElement(By.id("Email")).sendKeys("hola@ual.es");
-    driver.findElement(By.id("Password")).clear();
-    driver.findElement(By.id("Password")).sendKeys("ABab12!\"");
-    driver.findElement(By.id("ConfirmPassword")).clear();
-    driver.findElement(By.id("ConfirmPassword")).sendKeys("ABab12!\"");
-    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    driver.findElement(By.id("Email")).sendKeys("");
+    driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
     assertTrue(isElementPresent(By.cssSelector("div.validation-summary-errors.text-danger > ul > li")));
-    assertEquals("Log in", driver.findElement(By.linkText("Log in")).getText());
   }
 
   @After
