@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class ChangePasswordNotMatch {
+public class ChangePasswordNoMatch {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -18,7 +18,7 @@ public class ChangePasswordNotMatch {
 
   @Before
   public void setUp() throws Exception {
-	  System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
 		driver = new ChromeDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -26,7 +26,15 @@ public class ChangePasswordNotMatch {
 
   @Test
   public void testChangePasswordNoMatch() throws Exception {
-    driver.get("https://logappf1hmis2018.azurewebsites.net/Manage/ChangePassword");
+    driver.get("https://logappf1hmis2018.azurewebsites.net/");
+    driver.findElement(By.xpath("//a[contains(@href, '/Account/Login')]")).click();
+    driver.findElement(By.id("Email")).clear();
+    driver.findElement(By.id("Email")).sendKeys("mgl958@inlumine.ual.es");
+    driver.findElement(By.id("Password")).clear();
+    driver.findElement(By.id("Password")).sendKeys("123456Aa.");
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    driver.findElement(By.linkText("Hello mgl958@inlumine.ual.es!")).click();
+    driver.findElement(By.linkText("Password")).click();
     driver.findElement(By.id("OldPassword")).click();
     driver.findElement(By.id("OldPassword")).clear();
     driver.findElement(By.id("OldPassword")).sendKeys("Contraseña-1");
@@ -37,7 +45,8 @@ public class ChangePasswordNotMatch {
     driver.findElement(By.id("ConfirmPassword")).clear();
     driver.findElement(By.id("ConfirmPassword")).sendKeys("Contraseña-3");
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
-    assertTrue(isElementPresent(By.cssSelector("div.validation-summary-errors.text-danger > ul > li")));
+    assertTrue(isElementPresent(By.id("ConfirmPassword-error")));
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
   }
 
   @After

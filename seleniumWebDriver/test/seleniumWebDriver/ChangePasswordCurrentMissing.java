@@ -18,7 +18,7 @@ public class ChangePasswordCurrentMissing {
 
   @Before
   public void setUp() throws Exception {
-	  System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
 		driver = new ChromeDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -26,7 +26,15 @@ public class ChangePasswordCurrentMissing {
 
   @Test
   public void testChangePasswordCurrentMissing() throws Exception {
-    driver.get("https://logappf1hmis2018.azurewebsites.net/Manage/ChangePassword");
+    driver.get("https://logappf1hmis2018.azurewebsites.net/");
+    driver.findElement(By.xpath("//a[contains(@href, '/Account/Login')]")).click();
+    driver.findElement(By.id("Email")).clear();
+    driver.findElement(By.id("Email")).sendKeys("mgl958@inlumine.ual.es");
+    driver.findElement(By.id("Password")).clear();
+    driver.findElement(By.id("Password")).sendKeys("123456Aa.");
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    driver.findElement(By.linkText("Hello mgl958@inlumine.ual.es!")).click();
+    driver.findElement(By.linkText("Password")).click();
     driver.findElement(By.id("OldPassword")).click();
     driver.findElement(By.id("NewPassword")).click();
     driver.findElement(By.id("NewPassword")).clear();
@@ -35,7 +43,8 @@ public class ChangePasswordCurrentMissing {
     driver.findElement(By.id("ConfirmPassword")).clear();
     driver.findElement(By.id("ConfirmPassword")).sendKeys("Contraseña-2");
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
-    assertTrue(isElementPresent(By.cssSelector("div.validation-summary-errors.text-danger > ul > li")));
+    assertTrue(isElementPresent(By.id("OldPassword-error")));
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
   }
 
   @After

@@ -18,7 +18,7 @@ public class EditarPerfilPhoneErrNeo {
 
   @Before
   public void setUp() throws Exception {
-	  System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_win32/chromedriver.exe");
 		driver = new ChromeDriver();
     baseUrl = "https://www.katalon.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -26,13 +26,21 @@ public class EditarPerfilPhoneErrNeo {
 
   @Test
   public void testEditarPerfilPhoneErrNeo() throws Exception {
-    driver.get("https://logappf1hmis2018.azurewebsites.net/Manage/Index");
+    driver.get("https://logappf1hmis2018.azurewebsites.net/");
+    driver.findElement(By.xpath("//a[contains(@href, '/Account/Login')]")).click();
+    driver.findElement(By.id("Email")).clear();
+    driver.findElement(By.id("Email")).sendKeys("mgl958@inlumine.ual.es");
+    driver.findElement(By.id("Password")).clear();
+    driver.findElement(By.id("Password")).sendKeys("123456Aa.");
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    driver.findElement(By.linkText("Hello mgl958@inlumine.ual.es!")).click();
     driver.findElement(By.id("PhoneNumber")).click();
     driver.findElement(By.linkText("Profile")).click();
     driver.findElement(By.id("PhoneNumber")).clear();
     driver.findElement(By.id("PhoneNumber")).sendKeys("aaaaaaaaaaaaaaa");
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
-    assertTrue(isElementPresent(By.cssSelector("div.validation-summary-errors.text-danger > ul > li")));
+    assertTrue(isElementPresent(By.xpath("//div[4]/span")));
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
   }
 
   @After
