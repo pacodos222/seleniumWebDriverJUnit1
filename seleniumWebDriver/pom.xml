@@ -5,6 +5,7 @@
 	<artifactId>seleniumWebDriver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<build>
+
 		
 		<testSourceDirectory>test</testSourceDirectory>
 		<plugins>
@@ -17,6 +18,8 @@
 				</configuration>
 			</plugin>
 			
+
+		
 		</plugins>
 	</build>
 	<dependencies>

@@ -37,13 +37,13 @@ public class ChangePasswordNoMatch {
     driver.findElement(By.linkText("Password")).click();
     driver.findElement(By.id("OldPassword")).click();
     driver.findElement(By.id("OldPassword")).clear();
-    driver.findElement(By.id("OldPassword")).sendKeys("Contraseña-1");
+    driver.findElement(By.id("OldPassword")).sendKeys("Contrasena-1");
     driver.findElement(By.id("NewPassword")).click();
     driver.findElement(By.id("NewPassword")).clear();
-    driver.findElement(By.id("NewPassword")).sendKeys("Contraseña-2");
+    driver.findElement(By.id("NewPassword")).sendKeys("Contrasena-2");
     driver.findElement(By.id("ConfirmPassword")).click();
     driver.findElement(By.id("ConfirmPassword")).clear();
-    driver.findElement(By.id("ConfirmPassword")).sendKeys("Contraseña-3");
+    driver.findElement(By.id("ConfirmPassword")).sendKeys("Contrasena-3");
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
     assertTrue(isElementPresent(By.id("ConfirmPassword-error")));
     driver.findElement(By.xpath("//button[@type='submit']")).click();

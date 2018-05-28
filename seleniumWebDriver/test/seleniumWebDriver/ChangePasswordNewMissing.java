@@ -42,7 +42,7 @@ public class ChangePasswordNewMissing {
     driver.findElement(By.id("NewPassword")).click();
     driver.findElement(By.id("ConfirmPassword")).click();
     driver.findElement(By.id("ConfirmPassword")).clear();
-    driver.findElement(By.id("ConfirmPassword")).sendKeys("Contraseña-2");
+    driver.findElement(By.id("ConfirmPassword")).sendKeys("Contrasena-2");
     driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
     assertTrue(isElementPresent(By.xpath("//form/div/ul/li")));
   }
