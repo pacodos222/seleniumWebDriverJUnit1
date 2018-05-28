@@ -36,9 +36,11 @@ public class RegistroIncorrectoFalloLongitudContrasena {
     driver.findElement(By.id("Password")).sendKeys("123456");
     driver.findElement(By.id("ConfirmPassword")).click();
     driver.findElement(By.id("ConfirmPassword")).clear();
-    driver.findElement(By.id("ConfirmPassword")).sendKeys("1234567");
+    driver.findElement(By.id("ConfirmPassword")).sendKeys("123456");
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-    assertTrue(isElementPresent(By.cssSelector("div.validation-summary-errors.text-danger > ul > li")));
+    assertTrue(isElementPresent(By.xpath("//form/div/ul/li")));
+    assertTrue(isElementPresent(By.xpath("//form/div/ul/li[2]")));
+    assertTrue(isElementPresent(By.xpath("//form/div/ul/li[3]")));
   }
 
   @After

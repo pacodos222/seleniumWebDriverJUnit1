@@ -10,6 +10,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
 public class RegistroIncorrectoEmailNoValido {
   private WebDriver driver;
   private String baseUrl;
@@ -32,8 +41,8 @@ public class RegistroIncorrectoEmailNoValido {
     driver.findElement(By.id("Email")).clear();
     driver.findElement(By.id("Email")).sendKeys("123456");
     driver.findElement(By.xpath("//button[@type='submit']")).click();
-    assertTrue(isElementPresent(By.cssSelector("div.validation-summary-errors.text-danger > ul > li")));
-    assertTrue(isElementPresent(By.cssSelector("div.validation-summary-errors.text-danger > ul > li")));
+    assertTrue(isElementPresent(By.id("Email-error")));
+    
   }
 
   @After
@@ -78,4 +87,3 @@ public class RegistroIncorrectoEmailNoValido {
     }
   }
 }
-
